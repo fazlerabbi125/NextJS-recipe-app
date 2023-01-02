@@ -23,7 +23,6 @@
     "bootstrap": "^5.2.3",
     "embla-carousel-react": "^7.0.5",
     "next": "13.0.1",
-    "next-optimized-images": "^2.6.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
