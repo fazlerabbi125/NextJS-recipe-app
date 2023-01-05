@@ -45,7 +45,7 @@ const RecipeAutoComplete: React.FC<{ router: NextRouter }> = ({ router }) => {
         } else {
             setLoading(false);
             setSuggestions(() => [])
-        };
+        }
 
         return () => {
             // cancel the subscription
