@@ -34,7 +34,7 @@ export interface RecipeDetailsType {
     }>;
     language: string;
     original_video_url: string | null;
-};
+}
 
 export default function handler(
     req: NextApiRequest,
