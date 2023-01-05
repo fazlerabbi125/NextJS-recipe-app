@@ -36,7 +36,6 @@ const VideoJS = (props: VideoJSProps) => {
 
             player.autoplay(options.autoplay || false);
             player.src(options.sources || "");
-            // player.defaultPlaybackRate(1.5)
         }
     }, [options, videoRef]);
 
