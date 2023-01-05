@@ -3,16 +3,15 @@ import videojs from "video.js";
 import {
     VideoJsPlayer,
     VideoJsPlayerOptions,
-    VideoJsPlayerPluginOptions,
 } from "video.js";
 
-export type VideoJSProps = {
-    options: VideoJsPlayerOptions & VideoJsPlayerPluginOptions;
+type VideoJSProps = {
+    options: VideoJsPlayerOptions
     onReady(player: VideoJsPlayer): void;
-};
+}
 
 const VideoJS = (props: VideoJSProps) => {
-    const videoRef = React.useRef<any>(null);
+    const videoRef = React.useRef<HTMLDivElement| null>(null);
     const playerRef = React.useRef<null | VideoJsPlayer>(null);
     const { options, onReady } = props;
 
@@ -23,8 +22,8 @@ const VideoJS = (props: VideoJSProps) => {
             const videoElement = document.createElement("video-js");
 
             videoElement.classList.add("vjs-big-play-centered");
-            videoRef.current.appendChild(videoElement);
-
+            videoRef.current?.appendChild(videoElement);
+            
             const player = (playerRef.current = videojs(videoElement, options, () => {
                 videojs.log("player is ready");
                 onReady && onReady(player);
