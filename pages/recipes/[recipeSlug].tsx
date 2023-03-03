@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import styles from "../../styles/modules/RecipeDetails.module.scss";
 import { fetchData } from "../../hooks/useAxios";
 import { RecipeDetailsType } from "../api/recipes/[recipeSlug]";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
@@ -10,8 +9,9 @@ import { TagDetailType } from "../api/tags";
 import CustomRating from "../../components/atoms/CustomRating";
 import RecipeBasicInfo from "../../components/organisms/RecipeBasicInfo";
 import RecipeInstructions from "../../components/organisms/RecipeInstructions";
+import styles from "./RecipeDetails.module.scss";
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getServerSideProps(context: GetServerSidePropsContext<{ recipeSlug?: string }>) {
     const recipe: RecipeDetailsType = await fetchData(
         `/recipes/${context.params?.recipeSlug}`
     );
@@ -60,7 +60,7 @@ export default function RecipeDetails({
                     <Title className={styles.recipe_details__card__header}>
                         {recipe.name}
                     </Title>
-                    <CustomRating value={recipe.user_ratings.score} />
+                    <CustomRating value={recipe.user_ratings?.score} />
                     <Text size="md" color="dimmed">
                         <strong>Published:</strong> {publishDate}
                     </Text>
@@ -82,6 +82,7 @@ export default function RecipeDetails({
                                         color="dark"
                                         radius="xl"
                                         key={tag.id}
+                                        className={styles.recipe_details__card__tags__item}
                                         url={`/tags/${tag.id}/recipes`}
                                         handleClick={() => handleTagClick(tag)}
                                     >
@@ -112,10 +113,10 @@ export default function RecipeDetails({
                             </Tabs.List>
                         </Card.Section>
                         <Tabs.Panel value="info">
-                            <RecipeBasicInfo styles={styles} recipe={recipe} />
+                            <RecipeBasicInfo recipe={recipe} />
                         </Tabs.Panel>
                         <Tabs.Panel value="instructions">
-                            <RecipeInstructions styles={styles} recipe={recipe} />
+                            <RecipeInstructions recipe={recipe} />
                         </Tabs.Panel>
                     </Tabs>
                 </section>

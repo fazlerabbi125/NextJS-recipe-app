@@ -9,13 +9,13 @@ export interface RecipeDetailsType {
     name: string;
     description: string;
     tags: Array<TagDetailType>;
-    sections: Array<Record<string, any>>
+    sections?: Array<Record<string, any>>
     thumbnail_url: string;
     thumbnail_alt_text: string;
     created_at: number;
     user_ratings: {
         count_positive: number;
-        score: number | null;
+        score?: number | null;
         count_negative: number;
     };
     total_time_minutes: number | null;
@@ -34,7 +34,7 @@ export interface RecipeDetailsType {
     }>;
     language: string;
     original_video_url: string | null;
-}
+};
 
 export default function handler(
     req: NextApiRequest,
