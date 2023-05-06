@@ -2,18 +2,18 @@
 
 .recipe_list {
   &__loading {
-    @include addFlex.flex_container($jc: center, $ai: center);
+    @include addFlex.flex-container($jc: center, $ai: center);
   }
 
   &__card {
     position: relative;
-    @apply w-3/12;
+    flex-basis: 325px;
 
     &__photo {
       position: relative;
       height: 200px;
 
-      > img {
+      >img {
         object-fit: cover;
         object-position: center;
       }
@@ -22,8 +22,8 @@
     &__footer {
       position: sticky;
       top: 100%;
-      @include addFlex.flex_container($jc: center);
-      @apply mt-4;
+      @include addFlex.flex-container($jc: center);
+      margin-top: 1rem;
     }
   }
 }

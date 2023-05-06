@@ -1,4 +1,3 @@
-//https://tailwindui.com/components/application-ui/navigation/navbars
 import { useState } from "react";
 import CustomNavLink from "../../atoms/CustomNavLink";
 import Image from "next/image";
@@ -28,9 +27,8 @@ export default function Navbar() {
           className={styles.navbar__toggler}
         />
         <div
-          className={`${styles.navbar__collapse} ${
-            isOpen ? styles["navbar__collapse--show"] : ""
-          }`}
+          className={`${styles.navbar__collapse} ${isOpen ? styles.show : ""
+            }`}
         >
           <ul className={styles["navbar__nav-list"]}>
             {routes.map((route) => (
@@ -40,7 +38,9 @@ export default function Navbar() {
             ))}
           </ul>
           <ul className={styles["navbar__nav-list"]}>
-            <RecipeAutoComplete />
+            <li className="sm:min-w-[18.5rem]">
+              <RecipeAutoComplete />
+            </li>
           </ul>
         </div>
       </div>
