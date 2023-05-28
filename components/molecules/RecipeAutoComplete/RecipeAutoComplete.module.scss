@@ -38,7 +38,7 @@
         display: none;
         overflow-y: auto;
         position: absolute;
-        top: calc(100% + 3px);
+        top: calc(100% + 4px);
         background-color: white;
         padding-top: 5px;
         padding-bottom: 5px;
@@ -48,6 +48,7 @@
         color: rgb(105, 105, 105);
         z-index: 10;
         max-height: 0;
+        box-shadow: 0 1px 3px 0 rgb(0, 0, 0, 0.2), 0 1px 2px -1px rgb(0, 0, 0, 0.2);
 
         &::-webkit-scrollbar {
             width: 10px;
@@ -58,7 +59,7 @@
             border-radius: 6px;
             border: 3px solid #ffffff;
         }
-        
+
         &--show {
             display: block;
             max-height: 15rem;

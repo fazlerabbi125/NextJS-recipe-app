@@ -52,9 +52,6 @@ export default function RecipeDetails({
 
     return (
         <React.Fragment>
-            <Head>
-                <title>Recipe Details</title>
-            </Head>
             <Card p="md" mb={"5em"} className={styles.recipe_details__card}>
                 <Stack justify="flex-start" spacing={6} mb="sm">
                     <Title className={styles.recipe_details__card__header}>
@@ -69,14 +66,14 @@ export default function RecipeDetails({
                     px="md"
                     pt={3}
                     pb="md"
-                    className="border border-solid border-gray-400 mb-8"
+                    className={`${styles.recipe_details__card__tags} mb-8`}
                 >
                     {recipe.tags.length > 0 ? (
                         <>
                             <Text size={21} weight={600}>
                                 Tags:
                             </Text>
-                            <div className={styles.recipe_details__card__tags}>
+                            <div className={styles.recipe_details__card__tags__container}>
                                 {recipe.tags.map((tag) => (
                                     <NavButton
                                         color="dark"
