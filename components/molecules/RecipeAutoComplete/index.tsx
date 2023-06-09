@@ -5,6 +5,7 @@ import { fetchData } from "../../../hooks/useAxios";
 import { withRouter, NextRouter } from "next/router";
 import { RecipeAutoCompleteTypeItem } from "../../../pages/api/recipes/autocomplete";
 import { TbSearch } from "react-icons/tb";
+import { RxCross2 } from "react-icons/rx";
 import styles from "./RecipeAutoComplete.module.scss";
 
 const RecipeAutoComplete: FC<{ router: NextRouter }> = ({ router }) => {
@@ -77,13 +78,22 @@ const RecipeAutoComplete: FC<{ router: NextRouter }> = ({ router }) => {
             >
                 <TbSearch size={16} color="#8e8e93" />
                 <input
-                    type="search"
+                    type="text"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     className={styles.recipeAutocomplete__field__input}
                     placeholder="Search recipes by name or ingredients"
                 />
-                {loading && <Loader size={16} color="gray" />}
+                {loading ? (
+                    <Loader size={16} color="gray" />
+                ) : (
+                    search && (
+                        <RxCross2
+                            className={styles.recipeAutocomplete__field__clear}
+                            onClick={() => setSearch("")}
+                        />
+                    )
+                )}
             </div>
             <div
                 className={[
