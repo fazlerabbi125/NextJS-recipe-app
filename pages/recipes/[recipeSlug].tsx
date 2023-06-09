@@ -1,14 +1,14 @@
 import React from "react";
-import Head from "next/head";
 import { fetchData } from "@/hooks/useAxios";
 import { RecipeDetailsType } from "../api/recipes/[recipeSlug]";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { Card, Title, Stack, Text, Tabs } from "@mantine/core";
+import { Card, Title, Stack, Text, Tabs, Flex } from "@mantine/core";
 import NavButton from "@/components/atoms/NavButton";
 import { TagDetailType } from "../api/tags";
 import CustomRating from "@/components/atoms/CustomRating";
 import RecipeBasicInfo from "@/components/organisms/RecipeBasicInfo";
 import RecipeInstructions from "@/components/organisms/RecipeInstructions";
+import { FacebookShareButton, TwitterShareButton } from "react-share";
 import styles from "./RecipeDetails.module.scss";
 
 export async function getServerSideProps(context: GetServerSidePropsContext<{ recipeSlug?: string }>) {
@@ -58,9 +58,12 @@ export default function RecipeDetails({
                         {recipe.name}
                     </Title>
                     <CustomRating value={recipe.user_ratings?.score} />
-                    <Text size="md" color="dimmed">
-                        <strong>Published:</strong> {publishDate}
-                    </Text>
+                    <Flex justify={'space-between'} gap={10}>
+                        <Text size="md" color="dimmed">
+                            <strong>Published:</strong> {publishDate}
+                        </Text>
+                        <div></div>
+                    </Flex>
                 </Stack>
                 <Card.Section
                     px="md"
