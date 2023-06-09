@@ -1,4 +1,3 @@
-import Head from "next/head";
 import React from "react";
 import { TextInput, Loader } from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
@@ -44,10 +43,7 @@ export default function TagList() {
   const totalTags = tagList?.count || 0;
 
   return (
-    <React.Fragment>
-      <Head>
-        <title>Recipe Tags</title>
-      </Head>
+ 
       <section>
         {isLoading && (
           <div className="flex justify-center">
@@ -110,6 +106,5 @@ export default function TagList() {
           </>
         )}
       </section>
-    </React.Fragment>
   );
 }
