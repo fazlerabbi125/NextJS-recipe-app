@@ -8,6 +8,7 @@
     width: 100%;
 
     &__field {
+        $field: &;
         @include addFlex.flex-container($jc: space-between, $ai: center);
         gap: 5px;
         background-color: white;
@@ -20,6 +21,10 @@
         &:focus-within {
             outline: none;
             border-color: darken($color: gainsboro, $amount: 30%);
+
+            #{$field}__clear{
+                display: inline-block;
+            }
         }
 
         &__input {
@@ -31,6 +36,13 @@
             &::placeholder {
                 color: #8e8e93;
             }
+        }
+
+        &__clear {
+            color: #8e8e93;
+            font-size: 20px;
+            display: none;
+            cursor: pointer;
         }
     }
 
