@@ -3,7 +3,7 @@ import { Pagination } from "@mantine/core";
 
 interface ListPaginationProps {
     page: number;
-    onPageChange: React.Dispatch<React.SetStateAction<number>> | (() => void);
+    onPageChange: React.Dispatch<React.SetStateAction<number>> | ((value: number) => void);
     totalPages: number;
     className?: string;
     itemClassName?: string;

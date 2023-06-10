@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import {
     Flex,
@@ -22,8 +23,9 @@ interface RecipeListProps {
 type RecipeListResponse = CustomAxiosResponse<RecipeListType>;
 
 const RecipeList = (props: RecipeListProps) => {
+    const router = useRouter();
     const itemsPerPage = 9;
-    const [page, setPage] = React.useState<number>(1);
+    const page = React.useMemo<number>(() => Number(router.query?.page || 1), [router.query?.page]);
     const start = (page - 1) * itemsPerPage;
     const end = (page - 1) * itemsPerPage + itemsPerPage;
     const {
@@ -39,7 +41,17 @@ const RecipeList = (props: RecipeListProps) => {
         () => recipeList?.count || 0,
         [recipeList?.count]
     );
-    // console.log(recipeList);
+
+    function handlePageChange(page: number) {
+        const { page: _, ...rest } = router.query;
+        router.push({
+            pathname: router.pathname,
+            query: page > 1 ? {
+                page,
+                ...rest
+            } : rest
+        })
+    }
 
     if (isLoading) {
         return (
@@ -96,7 +108,7 @@ const RecipeList = (props: RecipeListProps) => {
                     </Flex>
                     <ListPagination
                         page={page}
-                        onPageChange={setPage}
+                        onPageChange={handlePageChange}
                         totalPages={Math.ceil(total / itemsPerPage)}
                         className="my-5"
                         itemClassName="pagination_items"
