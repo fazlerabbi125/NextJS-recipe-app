@@ -25,7 +25,7 @@ export default function handler(
 ) {
     const start = parseInt(`${req.query.start}`) || 0;
     const end = parseInt(`${req.query.end}`) || tags.count;
-    const results = tags.results
+    const query = tags.results
         .filter((elem) => {
             if (req.query.tagName && req.query.tagName.length > 0) {
                 const regex = new RegExp(`${req.query.tagName}`, "gi");
@@ -33,7 +33,8 @@ export default function handler(
             }
             return true;
         })
-        .slice(start, end);
 
-    res.status(200).json({ count: tags.count, results });
+    res.status(200).json({
+        count: query.length, results: query.slice(start, end)
+    });
 }
