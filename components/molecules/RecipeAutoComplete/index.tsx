@@ -3,7 +3,7 @@ import { Loader } from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
 import { fetchData } from "../../../hooks/useAxios";
 import { withRouter, NextRouter } from "next/router";
-import { RecipeAutoCompleteTypeItem } from "../../../pages/api/recipes/autocomplete";
+import { RecipeAutoCompleteTypeItem } from "../../../pages/api/recipes/search";
 import { TbSearch } from "react-icons/tb";
 import { RxCross2 } from "react-icons/rx";
 import styles from "./RecipeAutoComplete.module.scss";
@@ -32,7 +32,7 @@ const RecipeAutoComplete: FC<{ router: NextRouter }> = ({ router }) => {
         const fetchSuggestions = async () => {
             if (isApiSubscribed) {
                 try {
-                    const data = await fetchData("/recipes/autocomplete", {
+                    const data = await fetchData("/recipes/search", {
                         search: debouncedSearch,
                     });
                     setSuggestions(data);

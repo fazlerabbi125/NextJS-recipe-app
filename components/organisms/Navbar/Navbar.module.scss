@@ -1,5 +1,5 @@
 @use "../../../styles/partials/mediaQuery";
-@use "../../../styles/partials/addFlex";
+@use "../../../styles/partials/utils";
 
 .navbar {
     $root: &;
@@ -10,7 +10,7 @@
     margin-bottom: 2rem;
     position: relative;
     font: 500 20px/30px "Nunito";
-    @include addFlex.flex-container($ai: center);
+    @include utils.flex-container($ai: center);
 
     &__container {
         width: 100%;
@@ -19,7 +19,7 @@
         position: relative;
         margin-left: auto;
         margin-right: auto;
-        @include addFlex.flex-container($jc: space-between, $ai: center);
+        @include utils.flex-container($jc: space-between, $ai: center);
 
         @include mediaQuery.maxCustomDevice(640px) {
             flex-wrap: wrap;
@@ -35,7 +35,7 @@
     }
 
     &__brand {
-        @include addFlex.flex-container($ai: center);
+        @include utils.flex-container($ai: center);
         gap: 0.5rem;
         margin-right: 1rem;
         text-decoration: none;
@@ -43,7 +43,7 @@
     }
 
     &__collapse {
-        @include addFlex.flex-container($jc: space-between, $ai: center);
+        @include utils.flex-container($jc: space-between, $ai: center);
         flex-basis: 100%; // Depends on flex-direction. Acts like width for row and height for column
         flex-grow: 1;
 
@@ -58,7 +58,7 @@
 
         &.show {
             @include mediaQuery.maxCustomDevice(640px) {
-                @include addFlex.flex-container($direction: column);
+                @include utils.flex-container($direction: column);
                 max-height: 100%;
             }
         }
@@ -68,10 +68,10 @@
         list-style: none;
         padding: 0;
         margin: 0;
-        @include addFlex.flex-container($ai: center);
+        @include utils.flex-container($ai: center);
 
         @include mediaQuery.maxCustomDevice(640px) {
-            @include addFlex.flex-container($direction: column);
+            @include utils.flex-container($direction: column);
             opacity: 0;
             transition: opacity 2s;
 
@@ -83,7 +83,7 @@
         &__item {
             font: inherit;
             text-decoration: none;
-            @include addFlex.flex-container($ai: center);
+            @include utils.flex-container($ai: center);
             gap: 0.5rem;
             padding: 0.75rem;
         }

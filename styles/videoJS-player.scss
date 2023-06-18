@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@use "./partials/addFlex";
+@use "./partials/utils";
 @use "./partials/mediaQuery";
 
 .vjs-custom-theme {
@@ -32,7 +32,7 @@
     }
 
     & .vjs-big-play-button .vjs-icon-placeholder:before {
-        @include addFlex.flex-container($jc: center, $ai: center);
+        @include utils.flex-container($jc: center, $ai: center);
     }
 }
 

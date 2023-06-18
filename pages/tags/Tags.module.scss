@@ -1,4 +1,4 @@
-@use "@/styles/partials/addFlex";
+@use "@/styles/partials/utils";
 @use "@/styles/partials/mediaQuery";
 
 .tag-list {
@@ -13,7 +13,7 @@
     }
 
     @include mediaQuery.devices(mobile) {
-        @include addFlex.flex-container($jc: center, $ai: center, $wr: wrap);
+        @include utils.flex-container($jc: center, $ai: center, $wr: wrap);
         gap: 1rem;
     }
 

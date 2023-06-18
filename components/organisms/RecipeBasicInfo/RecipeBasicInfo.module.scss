@@ -1,4 +1,4 @@
-@use "../../../styles/partials/addFlex";
+@use "../../../styles/partials/utils";
 
 .recipe_basic-info {
     &__photo {
@@ -14,7 +14,7 @@
     &__ingredients {
         padding: 1rem 0.75rem;
         margin-bottom: 1rem;
-        @include addFlex.flex-container($direction: column);
+        @include utils.flex-container($direction: column);
         gap: 1rem;
 
         &__heading {
