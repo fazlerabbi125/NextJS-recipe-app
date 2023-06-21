@@ -1,8 +1,8 @@
-@use "../../../styles/partials/addFlex";
+@use "../../../styles/partials/utils";
 
 .recipe_list {
   &__loading {
-    @include addFlex.flex-container($jc: center, $ai: center);
+    @include utils.flex-container($jc: center, $ai: center);
   }
 
   &__card {
@@ -22,7 +22,7 @@
     &__footer {
       position: sticky;
       top: 100%;
-      @include addFlex.flex-container($jc: center);
+      @include utils.flex-container($jc: center);
       margin-top: 1rem;
     }
   }

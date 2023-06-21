@@ -43,68 +43,69 @@ export default function TagList() {
   const totalTags = tagList?.count || 0;
 
   return (
- 
-      <section>
-        {isLoading && (
-          <div className="flex justify-center">
-            <Loader color="dark" />
-          </div>
-        )}
-        {error && <div className="response-error">{error.message}</div>}
-        {!error && tagList && (
-          <>
-            <TextInput
-              placeholder="Search tag by name or type"
-              radius="xl"
-              size="md"
-              className="w-4/12 mx-auto"
-              value={tagName}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setTagName(e.target.value)
-              }
-            />
-            <Header className="text-center text-4xl mt-10 mb-12">
-              {tagList.results.length > 0 ? "Available Tags" : "No tags found"}
-            </Header>
-            {tagList.results.length > 0 && (
-              <>
-                <div className={styles["tag-list"]}>
-                  {tagList.results.map((tag) => {
-                    return (
-                      <NavButton
-                        color="dark"
-                        radius="xl"
-                        key={tag.id}
-                        className={styles["tag-list__item"]}
-                        styles={{
-                          label: {
-                            whiteSpace: "unset",
-                          }
-                        }}
-                        url={{
-                          pathname: "/tags/[tagID]/recipes",
-                          query: {
-                            tagID: tag.id,
-                          },
-                        }}
-                        handleClick={() => handleTagClick(tag)}
-                      >
-                        {tag.display_name} ({tag.type.split("_").join(" ")})
-                      </NavButton>
-                    );
-                  })}
-                </div>
-                <ListPagination
-                  page={page}
-                  onPageChange={setPage}
-                  totalPages={Math.ceil(totalTags / itemsPerPage)}
-                  className="my-5"
-                  itemClassName="pagination_items"
-                />
-              </>
-            )}
-          </>
-        )}
-      </section>
+
+    <section>
+      {isLoading && (
+        <div className="flex justify-center">
+          <Loader color="dark" />
+        </div>
+      )}
+      {error && <div className="response-error">{error.message}</div>}
+      {!error && tagList && (
+        <>
+          <TextInput
+            placeholder="Search tag by name or type"
+            radius="xl"
+            size="md"
+            className="w-4/12 mx-auto"
+            value={tagName}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setTagName(e.target.value)
+            }
+            classNames={{ input: "focus:border-gray-400" }}
+          />
+          <Header className="text-center text-4xl mt-10 mb-12">
+            {tagList.results.length > 0 ? "Available Tags" : "No tags found"}
+          </Header>
+          {tagList.results.length > 0 && (
+            <>
+              <div className={styles["tag-list"]}>
+                {tagList.results.map((tag) => {
+                  return (
+                    <NavButton
+                      color="dark"
+                      radius="xl"
+                      key={tag.id}
+                      className={styles["tag-list__item"]}
+                      styles={{
+                        label: {
+                          whiteSpace: "unset",
+                        }
+                      }}
+                      url={{
+                        pathname: "/tags/[tagID]/recipes",
+                        query: {
+                          tagID: tag.id,
+                        },
+                      }}
+                      handleClick={() => handleTagClick(tag)}
+                    >
+                      {tag.display_name} ({tag.type.split("_").join(" ")})
+                    </NavButton>
+                  );
+                })}
+              </div>
+              <ListPagination
+                page={page}
+                onPageChange={setPage}
+                totalPages={Math.ceil(totalTags / itemsPerPage)}
+                className="my-5"
+                itemClassName="pagination_items"
+              />
+            </>
+          )}
+        </>
+      )}
+    </section>
   );
 }

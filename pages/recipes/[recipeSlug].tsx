@@ -1,17 +1,25 @@
 import React from "react";
-import Head from "next/head";
+import { useRouter } from "next/router";
 import { fetchData } from "@/hooks/useAxios";
 import { RecipeDetailsType } from "../api/recipes/[recipeSlug]";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { Card, Title, Stack, Text, Tabs } from "@mantine/core";
+import { Card, Title, Stack, Text, Tabs, Flex } from "@mantine/core";
 import NavButton from "@/components/atoms/NavButton";
 import { TagDetailType } from "../api/tags";
 import CustomRating from "@/components/atoms/CustomRating";
 import RecipeBasicInfo from "@/components/organisms/RecipeBasicInfo";
 import RecipeInstructions from "@/components/organisms/RecipeInstructions";
+import {
+    FacebookShareButton,
+    FacebookIcon,
+    TwitterShareButton,
+    TwitterIcon,
+} from "react-share";
 import styles from "./RecipeDetails.module.scss";
 
-export async function getServerSideProps(context: GetServerSidePropsContext<{ recipeSlug?: string }>) {
+export async function getServerSideProps(
+    context: GetServerSidePropsContext<{ recipeSlug?: string }>
+) {
     const recipe: RecipeDetailsType = await fetchData(
         `/recipes/${context.params?.recipeSlug}`
     );
@@ -32,6 +40,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext<{ re
 export default function RecipeDetails({
     recipe,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+    const router = useRouter();
     const [activeTab, setActiveTab] = React.useState<string | null>("info");
     const [publishDate, setPublishDate] = React.useState<string>("");
 
@@ -58,9 +67,35 @@ export default function RecipeDetails({
                         {recipe.name}
                     </Title>
                     <CustomRating value={recipe.user_ratings?.score} />
-                    <Text size="md" color="dimmed">
-                        <strong>Published:</strong> {publishDate}
-                    </Text>
+                    <Flex justify={"space-between"} align={"center"} gap={10} wrap={"wrap"}>
+                        <Text size="md" color="dimmed">
+                            <strong>Published:</strong> {publishDate}
+                        </Text>
+                        <div className={styles.recipe_details__card__share}>
+                            <FacebookShareButton
+                                url={(process.env.NEXT_PUBLIC_HOST || "") + router.asPath}
+                                resetButtonStyle={false}
+                                className={[
+                                    styles.recipe_details__card__share__btn,
+                                    styles["recipe_details__card__share__btn--fb"],
+                                ].join(" ")}
+                            >
+                                <FacebookIcon size={35} />
+                                <span>Share</span>
+                            </FacebookShareButton>
+                            <TwitterShareButton
+                                url={(process.env.NEXT_PUBLIC_HOST || "") + router.asPath}
+                                resetButtonStyle={false}
+                                className={[
+                                    styles.recipe_details__card__share__btn,
+                                    styles["recipe_details__card__share__btn--twitter"],
+                                ].join(" ")}
+                            >
+                                <TwitterIcon size={35} />
+                                <span>Tweet</span>
+                            </TwitterShareButton>
+                        </div>
+                    </Flex>
                 </Stack>
                 <Card.Section
                     px="md"
