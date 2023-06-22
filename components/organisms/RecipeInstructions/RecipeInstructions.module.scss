@@ -15,7 +15,7 @@
         margin-right: auto;
 
         & :global(.vjs-poster) {
-            //referring to global css inside css module
+            //referring to global css inside css module. Use :local() selector to refer to local classes.
             background-size: cover;
         }
     }

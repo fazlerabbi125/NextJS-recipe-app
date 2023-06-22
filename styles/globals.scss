@@ -8,6 +8,30 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* 
+BEM should only branch two levels deep from topmost classname.
+You can also follow the pattern: block-name__element-name format. Example:
+
+<form class="search-form">
+    <div class="search-form__content">
+        <input class="search-form__content-input">
+        <button class="search-form__content-button">Search</button>
+    </div>
+</form>
+
+BEM standard:
+1)hyphenated class names as blocks:-
+foo-bar
+2)block name followed by __ followed by hyphenated class names for elements:-
+foo-bar__fizz-buzz
+3)block or element names followed by -- followed by hyphenated class names for modifiers:-
+foo-bar--baz, foo-bar--baz__fizz-buzz, foo-bar__fizz-buzz--qux
+
+https://en.bem.info/methodology/quick-start/#guidelines-for-using-elements
+https://www.toptal.com/css/introduction-to-bem-methodology
+*/
+
 * {
     box-sizing: border-box;
 }

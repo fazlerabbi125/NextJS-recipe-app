@@ -48,18 +48,20 @@
         flex-grow: 1;
 
         @include mediaQuery.maxCustomDevice(640px) {
-            display: none;
-            flex-direction: column;
+            @include utils.flex-container($direction: column);
             margin-top: 0.5rem;
+            visibility: hidden;
             margin-bottom: 0.5rem;
-            max-height: 0;
-            transition: max-height 0.5s ease;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
         }
 
-        &.show {
+        &--show { //when used with parent class, it will work like className-1.className2
             @include mediaQuery.maxCustomDevice(640px) {
-                @include utils.flex-container($direction: column);
-                max-height: 100%;
+                position: unset;
+                opacity: 1;
+                visibility: visible;
             }
         }
     }
@@ -72,12 +74,6 @@
 
         @include mediaQuery.maxCustomDevice(640px) {
             @include utils.flex-container($direction: column);
-            opacity: 0;
-            transition: opacity 2s;
-
-            #{$root}__collapse.show & {
-                opacity: 1;
-            }
         }
 
         &__item {
