@@ -10,9 +10,7 @@ import styles from "./RecipeAutoComplete.module.scss";
 
 const RecipeAutoComplete: FC<{ router: NextRouter }> = ({ router }) => {
     const [search, setSearch] = useState("");
-    const [suggestions, setSuggestions] = useState<
-        RecipeAutoCompleteTypeItem[] | null
-    >(null);
+    const [suggestions, setSuggestions] = useState<RecipeAutoCompleteTypeItem[] | null>(null);
     const parentID = useId();
     const parentRef = useRef<HTMLDivElement | null>(null);
     const [open, setOpen] = useState(false);

@@ -6,7 +6,7 @@ import { NextPage } from "next";
 
 const TagRecipes: NextPage = () => {
     const router = useRouter();
-    const tagInfo: Record<string, string> = JSON.parse(localStorage.getItem("tagInfo") || '') || {};
+    const tagInfo: Record<string, string> = JSON.parse(localStorage.getItem("tagInfo") || "") || {};
 
     return (
         <>

@@ -12,7 +12,7 @@ export default function RecipeDetailsMeta({ recipe }: RecipeDetailsMetaProps) {
         thumbnail: recipe.thumbnail_url,
         description: recipe.description || "",
         siteName: "Faiyaz's Recipes",
-    }
+    };
     return (
         <Head>
             <title>{`Recipe | ${data.title}`}</title>

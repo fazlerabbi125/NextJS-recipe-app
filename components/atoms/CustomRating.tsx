@@ -5,7 +5,5 @@ interface CustomRatingProps {
 }
 
 export default function CustomRating(props: CustomRatingProps) {
-    return (
-        <Rating value={props.value ? props.value * 5 : 0} fractions={2} readOnly />
-    );
+    return <Rating value={props.value ? props.value * 5 : 0} fractions={2} readOnly />;
 }

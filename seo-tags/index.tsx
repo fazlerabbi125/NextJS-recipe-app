@@ -16,7 +16,7 @@ export interface SEOTagsProps<T = any> {
 }
 
 export default function SEOTags({ pageProps, pathname }: SEOTagsProps) {
-    return (pathname === "/recipes/[recipeSlug]" && pageProps?.recipe) ? (
+    return pathname === "/recipes/[recipeSlug]" && pageProps?.recipe ? (
         <RecipeDetailsMeta recipe={pageProps.recipe} />
     ) : (
         <DefaultMeta />

@@ -60,17 +60,18 @@ function RecipeInstructions({ recipe }: RecipeInfoSectionProps) {
     return (
         <React.Fragment>
             {recipe.original_video_url && (
-                <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady} videoPlayerClassName={styles["recipe-instructions__vid-player"]} />
+                <VideoPlayer
+                    options={videoJsOptions}
+                    onReady={handlePlayerReady}
+                    videoPlayerClassName={styles["recipe-instructions__vid-player"]}
+                />
             )}
             <List
                 type="ordered"
                 mt="xl"
                 className={styles["recipe-instructions"]}
                 classNames={{
-                    item: [
-                        styles["recipe-instructions__item"],
-                        inter.className,
-                    ].join(" "),
+                    item: [styles["recipe-instructions__item"], inter.className].join(" "),
                 }}
             >
                 {recipe.instructions.map((instruction) => (

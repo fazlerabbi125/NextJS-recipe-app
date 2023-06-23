@@ -9,20 +9,13 @@ import { TagDetailType } from "../api/tags";
 import CustomRating from "@/components/atoms/CustomRating";
 import RecipeBasicInfo from "@/components/organisms/RecipeBasicInfo";
 import RecipeInstructions from "@/components/organisms/RecipeInstructions";
-import {
-    FacebookShareButton,
-    FacebookIcon,
-    TwitterShareButton,
-    TwitterIcon,
-} from "react-share";
+import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from "react-share";
 import styles from "./RecipeDetails.module.scss";
 
 export async function getServerSideProps(
     context: GetServerSidePropsContext<{ recipeSlug?: string }>
 ) {
-    const recipe: RecipeDetailsType = await fetchData(
-        `/recipes/${context.params?.recipeSlug}`
-    );
+    const recipe: RecipeDetailsType = await fetchData(`/recipes/${context.params?.recipeSlug}`);
 
     if (!recipe) {
         return {
@@ -54,18 +47,13 @@ export default function RecipeDetails({
         );
     };
 
-    React.useEffect(
-        () => setPublishDate(new Date(recipe.created_at).toLocaleDateString()),
-        []
-    ); //For hydration error due to getServerSideProps
+    React.useEffect(() => setPublishDate(new Date(recipe.created_at).toLocaleDateString()), []); //For hydration error due to getServerSideProps
 
     return (
         <React.Fragment>
             <Card p="md" mb={"5em"} className={styles.recipe_details__card}>
                 <Stack justify="flex-start" spacing={6} mb="sm">
-                    <Title className={styles.recipe_details__card__header}>
-                        {recipe.name}
-                    </Title>
+                    <Title className={styles.recipe_details__card__header}>{recipe.name}</Title>
                     <CustomRating value={recipe.user_ratings?.score} />
                     <Flex justify={"space-between"} align={"center"} gap={10} wrap={"wrap"}>
                         <Text size="md" color="dimmed">

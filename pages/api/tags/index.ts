@@ -19,22 +19,19 @@ tags.results.sort((a, b) => {
     return 1;
 });
 
-export default function handler(
-    req: NextApiRequest,
-    res: NextApiResponse<TagListType>
-) {
+export default function handler(req: NextApiRequest, res: NextApiResponse<TagListType>) {
     const start = parseInt(`${req.query.start}`) || 0;
     const end = parseInt(`${req.query.end}`) || tags.count;
-    const query = tags.results
-        .filter((elem) => {
-            if (req.query.tagName && req.query.tagName.length > 0) {
-                const regex = new RegExp(`${req.query.tagName}`, "gi");
-                return regex.test(elem.display_name) || regex.test(elem.type);
-            }
-            return true;
-        })
+    const query = tags.results.filter((elem) => {
+        if (req.query.tagName && req.query.tagName.length > 0) {
+            const regex = new RegExp(`${req.query.tagName}`, "gi");
+            return regex.test(elem.display_name) || regex.test(elem.type);
+        }
+        return true;
+    });
 
     res.status(200).json({
-        count: query.length, results: query.slice(start, end)
+        count: query.length,
+        results: query.slice(start, end),
     });
 }

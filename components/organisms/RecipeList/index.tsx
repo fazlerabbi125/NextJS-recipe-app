@@ -2,13 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import {
-    Flex,
-    Card,
-    Loader,
-    Text,
-    Stack,
-} from "@mantine/core";
+import { Flex, Card, Loader, Text, Stack } from "@mantine/core";
 import ListPagination from "../../molecules/ListPagination";
 import CustomRating from "../../atoms/CustomRating";
 import { RecipeListType } from "../../../pages/api/recipes";
@@ -37,20 +31,20 @@ const RecipeList = (props: RecipeListProps) => {
         end,
         tags: props.tags || "",
     });
-    const total = React.useMemo(
-        () => recipeList?.count || 0,
-        [recipeList?.count]
-    );
+    const total = React.useMemo(() => recipeList?.count || 0, [recipeList?.count]);
 
     function handlePageChange(page: number) {
         const { page: _, ...rest } = router.query;
         router.push({
             pathname: router.pathname,
-            query: page > 1 ? {
-                page,
-                ...rest
-            } : rest
-        })
+            query:
+                page > 1
+                    ? {
+                          page,
+                          ...rest,
+                      }
+                    : rest,
+        });
     }
 
     if (isLoading) {

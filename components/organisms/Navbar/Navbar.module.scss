@@ -57,7 +57,8 @@
             position: absolute;
         }
 
-        &--show { //when used with parent class, it will work like className-1.className2
+        &--show {
+            //when used with parent class, it will work like className-1.className2
             @include mediaQuery.maxCustomDevice(640px) {
                 position: unset;
                 opacity: 1;

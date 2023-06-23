@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint-fix":"next lint --fix",
+    "format": "npx prettier --write .",
+    "prepare": "husky install",
+    "precommit": "npm run lint-fix"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -19,6 +23,8 @@
     "@types/react-dom": "18.0.11",
     "@videojs/themes": "^1.0.1",
     "axios": "^1.3.4",
+    "eslint": "^8.43.0",
+    "eslint-config-next": "^13.4.7",
     "next": "13.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -27,14 +33,19 @@
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
     "swr": "^2.0.4",
-    "typescript": "4.9.5",
+    "typescript": "^5.1.3",
     "video.js": "^7.20.3"
   },
   "devDependencies": {
     "@types/react-slick": "^0.23.10",
     "@types/video.js": "^7.3.51",
     "autoprefixer": "^10.4.13",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
     "postcss": "^8.4.21",
+    "prettier": "^2.8.8",
     "sass": "^1.58.3",
     "tailwindcss": "^3.2.7"
   }

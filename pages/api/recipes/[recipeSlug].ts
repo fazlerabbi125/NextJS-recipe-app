@@ -1,6 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from "next";
 import recipes from "@/data/recipe.json";
-import { TagDetailType } from '../tags';
+import { TagDetailType } from "../tags";
 
 export interface RecipeDetailsType {
     [key: string]: any;
@@ -9,7 +9,7 @@ export interface RecipeDetailsType {
     name: string;
     description: string;
     tags: Array<TagDetailType>;
-    sections?: Array<Record<string, any>>
+    sections?: Array<Record<string, any>>;
     thumbnail_url: string;
     thumbnail_alt_text: string;
     created_at: number;
@@ -34,7 +34,7 @@ export interface RecipeDetailsType {
     }>;
     language: string;
     original_video_url: string | null;
-};
+}
 
 export default function handler(
     req: NextApiRequest,
@@ -42,7 +42,7 @@ export default function handler(
 ) {
     const result = recipes.results.find((elem: any) => {
         return req.query.recipeSlug === elem.slug;
-    })
+    });
 
-    res.status(200).json(result || null)
+    res.status(200).json(result || null);
 }

@@ -12,22 +12,12 @@ export default function Custom404() {
             mt="lg"
             className="relative mb-12"
         >
-            <Image
-                src={notFoundImg}
-                alt="cross-cultery"
-                className="md:w-[30%] max-sm:w-8/12"
-            />
-            <Text
-                color={"#334155"}
-                weight={700}
-                className="absolute top-2 text-4xl"
-            >
+            <Image src={notFoundImg} alt="cross-cultery" className="md:w-[30%] max-sm:w-8/12" />
+            <Text color={"#334155"} weight={700} className="absolute top-2 text-4xl">
                 404
             </Text>
             <div className="text-center">
-                <Title className="font-sans text-zinc-50 mb-1">
-                    Page Not Found
-                </Title>
+                <Title className="font-sans text-zinc-50 mb-1">Page Not Found</Title>
                 <Text weight={700} size={20}>
                     Sorry, we couldn't find the page you were looking for
                 </Text>

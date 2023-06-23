@@ -15,9 +15,7 @@ export default function handler(
             if (req.query.search && req.query.search.length > 0) {
                 const regex = new RegExp(`${req.query.search}`, "gi");
                 const ingredients = elem.sections.flatMap((section) => {
-                    return section.components.map(
-                        (component) => component.ingredient.name
-                    );
+                    return section.components.map((component) => component.ingredient.name);
                 });
                 return (
                     regex.test(elem.name) ||
@@ -25,7 +23,8 @@ export default function handler(
                 );
             }
             return false;
-        }).map((elem) => ({
+        })
+        .map((elem) => ({
             slug: elem.slug,
             value: elem.name,
         }));
