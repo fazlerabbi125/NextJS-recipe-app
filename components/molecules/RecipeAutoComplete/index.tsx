@@ -1,9 +1,9 @@
 import { FC, useState, useEffect, useRef, useId } from "react";
 import { Loader } from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
-import { fetchData } from "../../../hooks/useAxios";
+import { fetchData } from "@/hooks/useAxios";
 import { withRouter, NextRouter } from "next/router";
-import { RecipeAutoCompleteTypeItem } from "../../../pages/api/recipes/search";
+import { RecipeAutoCompleteTypeItem } from "@/pages/api/recipes/search";
 import { TbSearch } from "react-icons/tb";
 import { RxCross2 } from "react-icons/rx";
 import styles from "./RecipeAutoComplete.module.scss";
@@ -34,10 +34,10 @@ const RecipeAutoComplete: FC<{ router: NextRouter }> = ({ router }) => {
                         search: debouncedSearch,
                     });
                     setSuggestions(data);
-                    setLoading(false);
                 } catch (err: any) {
                     console.log(err.message);
                     setSuggestions([]);
+                } finally {
                     setLoading(false);
                 }
             }
@@ -63,8 +63,8 @@ const RecipeAutoComplete: FC<{ router: NextRouter }> = ({ router }) => {
                 setOpen(false); // close menu when clicked anywhere outside of the component
             }
         };
-        document.body.addEventListener("click", closeMenu);
-        return () => document.body.removeEventListener("click", closeMenu);
+        document.body.addEventListener("mousedown", closeMenu);
+        return () => document.body.removeEventListener("mousedown", closeMenu);
     }, [parentRef]);
 
     return (

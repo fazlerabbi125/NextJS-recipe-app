@@ -46,23 +46,27 @@
         @include utils.flex-container($jc: space-between, $ai: center);
         flex-basis: 100%; // Depends on flex-direction. Acts like width for row and height for column
         flex-grow: 1;
+        background-color: white;
 
         @include mediaQuery.maxCustomDevice(640px) {
             @include utils.flex-container($direction: column);
-            margin-top: 0.5rem;
-            visibility: hidden;
-            margin-bottom: 0.5rem;
+            padding: 0.5rem 0.5rem 1rem;
+            transform: scale(1, 0);
             opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+            transform-origin: top; // by default transform starts from center
+            transition: transform 0.5s ease-in-out, opacity 0.25s ease-in-out;
             position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            z-index: 5;
         }
 
         &--show {
             //when used with parent class, it will work like className-1.className2
             @include mediaQuery.maxCustomDevice(640px) {
-                position: unset;
+                transform: none;
                 opacity: 1;
-                visibility: visible;
             }
         }
     }
