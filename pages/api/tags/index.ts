@@ -1,12 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import tags from "@/data/tags.json";
-
-export interface TagDetailType {
-    name: string;
-    id: number;
-    display_name: string;
-    type: string;
-}
+import { TagDetailType } from "./[tagID]";
 
 export interface TagListType {
     count: number;

@@ -3,7 +3,6 @@ import { TextInput, Loader } from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
 import { useAxios, CustomAxiosResponse } from "@/hooks/useAxios";
 import { TagListType } from "../api/tags";
-import { TagDetailType } from "../api/tags";
 import NavButton from "@/components/atoms/NavButton";
 import ListPagination from "@/components/molecules/ListPagination";
 import Header from "@/components/organisms/Header";
@@ -19,16 +18,6 @@ export default function TagList() {
 
     const start = (page - 1) * itemsPerPage;
     const end = (page - 1) * itemsPerPage + itemsPerPage;
-
-    const handleTagClick = (tag: TagDetailType) => {
-        localStorage.setItem(
-            "tagInfo",
-            JSON.stringify({
-                tagName: tag.display_name,
-                tagType: tag.type.split("_").join(" "),
-            })
-        );
-    };
 
     const {
         data: tagList,
@@ -87,7 +76,6 @@ export default function TagList() {
                                                     tagID: tag.id,
                                                 },
                                             }}
-                                            handleClick={() => handleTagClick(tag)}
                                         >
                                             {tag.display_name} ({tag.type.split("_").join(" ")})
                                         </NavButton>

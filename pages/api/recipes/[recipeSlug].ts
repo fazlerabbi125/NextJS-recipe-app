@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import recipes from "@/data/recipe.json";
-import { TagDetailType } from "../tags";
+import { TagDetailType } from "../tags/[tagID]";
 
 export interface RecipeDetailsType {
     [key: string]: any;
@@ -40,7 +40,7 @@ export default function handler(
     req: NextApiRequest,
     res: NextApiResponse<RecipeDetailsType | null>
 ) {
-    const result = recipes.results.find((elem: any) => {
+    const result = recipes.results.find((elem) => {
         return req.query.recipeSlug === elem.slug;
     });
 

@@ -17,7 +17,7 @@ export default function NavButton({
     const router = useRouter();
 
     const redirectTo = () => {
-        if (handleClick) handleClick();
+        handleClick?.();
         router.push(url);
     };
 

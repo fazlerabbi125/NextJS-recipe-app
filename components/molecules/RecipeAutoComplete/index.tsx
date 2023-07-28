@@ -63,7 +63,7 @@ const RecipeAutoComplete: FC<{ router: NextRouter }> = ({ router }) => {
                 setOpen(false); // close menu when clicked anywhere outside of the component
             }
         };
-        document.body.addEventListener("mousedown", closeMenu);
+        document.body.addEventListener("mousedown", closeMenu); // as click event may give wrong behaviour
         return () => document.body.removeEventListener("mousedown", closeMenu);
     }, [parentRef]);
 

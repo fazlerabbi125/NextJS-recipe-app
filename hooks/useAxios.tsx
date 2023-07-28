@@ -15,8 +15,8 @@ export interface CustomAxiosResponse<T = any> {
     data: AxiosResponse<T>["data"];
 }
 
-const fetchData = async (url: string, params: Record<string, number | string> = {}) => {
-    const res: AxiosResponse = await axInstance.get(url, { params });
+const fetchData = async <T = any,>(url: string, params: Record<string, number | string> = {}) => {
+    const res: AxiosResponse<T> = await axInstance.get(url, { params });
     return res.data;
 };
 

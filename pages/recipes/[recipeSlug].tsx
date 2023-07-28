@@ -5,7 +5,6 @@ import { RecipeDetailsType } from "../api/recipes/[recipeSlug]";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { Card, Title, Stack, Text, Tabs, Flex } from "@mantine/core";
 import NavButton from "@/components/atoms/NavButton";
-import { TagDetailType } from "../api/tags";
 import CustomRating from "@/components/atoms/CustomRating";
 import RecipeBasicInfo from "@/components/organisms/RecipeBasicInfo";
 import RecipeInstructions from "@/components/organisms/RecipeInstructions";
@@ -34,20 +33,7 @@ export default function RecipeDetails({
     recipe,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
     const router = useRouter();
-    const [activeTab, setActiveTab] = React.useState<string | null>("info");
-    const [publishDate, setPublishDate] = React.useState<string>("");
-
-    const handleTagClick = (tag: TagDetailType) => {
-        localStorage.setItem(
-            "tagInfo",
-            JSON.stringify({
-                tagName: tag.display_name,
-                tagType: tag.type.split("_").join(" "),
-            })
-        );
-    };
-
-    React.useEffect(() => setPublishDate(new Date(recipe.created_at).toLocaleDateString()), []); //For hydration error due to getServerSideProps
+    const [activeTab, setActiveTab] = React.useState<"info" | "instructions" | null>("info");
 
     return (
         <React.Fragment>
@@ -57,7 +43,8 @@ export default function RecipeDetails({
                     <CustomRating value={recipe.user_ratings?.score} />
                     <Flex justify={"space-between"} align={"center"} gap={10} wrap={"wrap"}>
                         <Text size="md" color="dimmed">
-                            <strong>Published:</strong> {publishDate}
+                            <strong>Published:</strong>{" "}
+                            {new Date(recipe.created_at).toLocaleDateString()}
                         </Text>
                         <div className={styles.recipe_details__card__share}>
                             <FacebookShareButton
@@ -104,7 +91,6 @@ export default function RecipeDetails({
                                         key={tag.id}
                                         className={styles.recipe_details__card__tags__item}
                                         url={`/tags/${tag.id}/recipes`}
-                                        handleClick={() => handleTagClick(tag)}
                                     >
                                         {tag.display_name} ({tag.type.split("_").join(" ")})
                                     </NavButton>
@@ -121,7 +107,7 @@ export default function RecipeDetails({
                     <Tabs
                         value={activeTab}
                         variant="outline"
-                        onTabChange={setActiveTab}
+                        onTabChange={(value) => setActiveTab(value as typeof activeTab)}
                         classNames={{
                             tabLabel: "text-[18px]",
                         }}
