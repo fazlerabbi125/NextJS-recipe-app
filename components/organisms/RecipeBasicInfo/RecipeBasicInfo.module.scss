@@ -1,6 +1,6 @@
 @use "../../../styles/partials/utils";
 
-.recipe_basic-info {
+.recipe-basic-info {
     &__photo {
         display: block;
         width: 80%;
@@ -18,13 +18,13 @@
         @include utils.flex-container($direction: column);
         gap: 1rem;
 
-        &__heading {
+        &-heading {
             border-bottom: 2px solid gainsboro;
             max-width: 20rem;
             font-size: xx-large;
         }
 
-        &__list {
+        &-list {
             column-count: 2;
             column-gap: 1rem;
         }

@@ -5,9 +5,9 @@ import Image from "next/image";
 import { Flex, Card, Loader, Text, Stack } from "@mantine/core";
 import ListPagination from "../../molecules/ListPagination";
 import CustomRating from "../../atoms/CustomRating";
-import { RecipeListType } from "../../../pages/api/recipes";
-import { RecipeDetailsType } from "../../../pages/api/recipes/[recipeSlug]";
-import { useAxios, CustomAxiosResponse } from "../../../hooks/useAxios";
+import { RecipeListType } from "@/pages/api/recipes";
+import { RecipeDetailsType } from "@/pages/api/recipes/[recipeSlug]";
+import { useAxios, CustomAxiosResponse } from "@/hooks/useAxios";
 import styles from "./RecipeList.module.scss";
 
 interface RecipeListProps {
@@ -37,19 +37,13 @@ const RecipeList = (props: RecipeListProps) => {
         const { page: _, ...rest } = router.query;
         router.push({
             pathname: router.pathname,
-            query:
-                page > 1
-                    ? {
-                          page,
-                          ...rest,
-                      }
-                    : rest,
+            query: page > 1 ? { page, ...rest } : rest,
         });
     }
 
     if (isLoading) {
         return (
-            <div className={styles.recipe_list__loading}>
+            <div className={styles["recipe-list__loading"]}>
                 <Loader color="dark" />
             </div>
         );
@@ -69,10 +63,10 @@ const RecipeList = (props: RecipeListProps) => {
                                 shadow="sm"
                                 p="sm"
                                 radius="md"
-                                className={styles.recipe_list__card}
+                                className={styles["recipe-list__card"]}
                                 key={recipe.id}
                             >
-                                <Card.Section className={styles.recipe_list__card__photo}>
+                                <Card.Section className={styles["recipe-list__card-photo"]}>
                                     <Image
                                         src={recipe.thumbnail_url}
                                         alt={recipe.thumbnail_alt_text}
@@ -86,7 +80,7 @@ const RecipeList = (props: RecipeListProps) => {
                                         {recipe.description || "No description"}
                                     </Text>
                                 </Stack>
-                                <div className={styles.recipe_list__card__footer}>
+                                <div className={styles["recipe-list__card-footer"]}>
                                     <Link
                                         className="btn btn--danger w-8/12"
                                         href={{

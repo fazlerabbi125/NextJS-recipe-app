@@ -33,7 +33,7 @@ export default function Navbar() {
                 >
                     <ul className={styles["navbar__nav-list"]}>
                         {routes.map((route) => (
-                            <li className={styles["navbar__nav-list__item"]} key={route.link}>
+                            <li className={styles["navbar__nav-item"]} key={route.link}>
                                 <CustomNavLink href={route.link}>{route.text}</CustomNavLink>
                             </li>
                         ))}

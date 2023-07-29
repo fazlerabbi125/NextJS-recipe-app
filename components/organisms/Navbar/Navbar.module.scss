@@ -71,17 +71,19 @@
         }
     }
 
-    &__nav-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        @include utils.flex-container($ai: center);
+    &__nav {
+        &-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            @include utils.flex-container($ai: center);
 
-        @include mediaQuery.maxCustomDevice(640px) {
-            @include utils.flex-container($direction: column);
+            @include mediaQuery.maxCustomDevice(640px) {
+                @include utils.flex-container($direction: column);
+            }
         }
 
-        &__item {
+        &-item {
             font: inherit;
             text-decoration: none;
             @include utils.flex-container($ai: center);

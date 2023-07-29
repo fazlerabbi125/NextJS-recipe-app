@@ -1,13 +1,16 @@
+@use "@/styles/partials/utils";
+
 .sticky-footer {
     position: sticky;
     top: 100%;
-    padding: 15px 50px;
+    padding: 20px 5px 15px;
     color: #fafafa;
     background-color: #262626;
     @apply font-sans;
 
     &__content {
         font-weight: 700;
-        @apply text-lg;
+        font-size: 1rem;
+        @include utils.flex-container($jc: center, $ai: center);
     }
 }

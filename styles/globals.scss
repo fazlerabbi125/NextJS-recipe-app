@@ -9,6 +9,9 @@
 @tailwind utilities;
 
 /* 
+BEM convention contains one element name after the block name and each block or elem may have one modifier name after it.
+Hyphens are used instead of spaces and can be used to extend block/element name only by one level. Example:
+
 BEM should only branch two levels deep from topmost classname.
 You can also follow the pattern: block-name__element-name format. Example:
 

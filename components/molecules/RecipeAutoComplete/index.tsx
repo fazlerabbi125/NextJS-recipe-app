@@ -68,9 +68,9 @@ const RecipeAutoComplete: FC<{ router: NextRouter }> = ({ router }) => {
     }, [parentRef]);
 
     return (
-        <div className={styles.recipeAutocomplete} id={parentID} ref={parentRef}>
+        <div className={styles["recipe-autocomplete"]} id={parentID} ref={parentRef}>
             <div
-                className={styles.recipeAutocomplete__field}
+                className={styles["recipe-autocomplete__field"]}
                 tabIndex={0}
                 onFocus={() => setOpen(true)}
             >
@@ -79,7 +79,7 @@ const RecipeAutoComplete: FC<{ router: NextRouter }> = ({ router }) => {
                     type="text"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className={styles.recipeAutocomplete__field__input}
+                    className={styles["recipe-autocomplete__field-input"]}
                     placeholder="Search recipes by name or ingredients"
                 />
                 {loading ? (
@@ -87,7 +87,7 @@ const RecipeAutoComplete: FC<{ router: NextRouter }> = ({ router }) => {
                 ) : (
                     search && (
                         <RxCross2
-                            className={styles.recipeAutocomplete__field__clear}
+                            className={styles["recipe-autocomplete__field-clear"]}
                             onClick={() => setSearch("")}
                         />
                     )
@@ -95,9 +95,9 @@ const RecipeAutoComplete: FC<{ router: NextRouter }> = ({ router }) => {
             </div>
             <div
                 className={[
-                    styles.recipeAutocomplete__dropdown,
+                    styles["recipe-autocomplete__dropdown"],
                     search && !loading && open && suggestions
-                        ? styles["recipeAutocomplete__dropdown--show"]
+                        ? styles["recipe-autocomplete__dropdown--show"]
                         : "",
                 ].join(" ")}
             >
@@ -109,7 +109,7 @@ const RecipeAutoComplete: FC<{ router: NextRouter }> = ({ router }) => {
                             <div
                                 key={item.value}
                                 onClick={() => redirectToRecipe(item)}
-                                className={styles.recipeAutocomplete__dropdown__item}
+                                className={styles["recipe-autocomplete__dropdown-item"]}
                             >
                                 {item.value}
                             </div>

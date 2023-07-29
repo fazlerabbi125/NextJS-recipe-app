@@ -1,6 +1,6 @@
 @use "../../../styles/partials/utils";
 
-.recipe_list {
+.recipe-list {
     &__loading {
         @include utils.flex-container($jc: center, $ai: center);
     }
@@ -9,7 +9,7 @@
         position: relative;
         flex-basis: 325px;
 
-        &__photo {
+        &-photo {
             position: relative;
             height: 200px;
 
@@ -19,7 +19,7 @@
             }
         }
 
-        &__footer {
+        &-footer {
             position: sticky;
             top: 100%;
             @include utils.flex-container($jc: center);

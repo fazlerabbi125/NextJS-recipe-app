@@ -3,11 +3,11 @@ import Footer from "../organisms/Footer";
 import Navbar from "../organisms/Navbar";
 import { Container } from "@mantine/core";
 
-interface LayoutProps {
+interface AppLayoutProps {
     children: React.ReactNode;
 }
 
-export default function Layout(props: LayoutProps) {
+export default function AppLayout(props: AppLayoutProps) {
     return (
         <React.Fragment>
             <Navbar />

@@ -5,12 +5,15 @@
     flex-flow: $direction $wr;
 }
 
-@mixin clampLines($lines: none, $ow: break-word, $wb: break-all) {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: $lines;
-    overflow-wrap: $ow;
-    word-break: $wb;
+@mixin text-truncate($lines: 1) {
     overflow: hidden;
-    text-overflow: ellipsis;
+
+    @if ($lines==1) {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    } @else {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: $lines;
+    }
 }

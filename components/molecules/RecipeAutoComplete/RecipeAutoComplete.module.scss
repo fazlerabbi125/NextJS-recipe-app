@@ -1,7 +1,7 @@
 @use "@/styles/partials/mediaQuery";
 @use "@/styles/partials/utils";
 
-.recipeAutocomplete {
+.recipe-autocomplete {
     $root: &;
     @include utils.flex-container($direction: column);
     position: relative;
@@ -22,13 +22,14 @@
             outline: none;
             border-color: darken($color: gainsboro, $amount: 30%);
 
-            #{$field}__clear {
+            #{$field}-clear {
                 display: inline-block;
             }
         }
 
-        &__input {
+        &-input {
             all: unset;
+            box-sizing: border-box;
             color: #8e8e93;
             font-size: 16px;
             flex-basis: 100%;
@@ -38,7 +39,7 @@
             }
         }
 
-        &__clear {
+        &-clear {
             color: #8e8e93;
             font-size: 20px;
             display: none;
@@ -77,14 +78,10 @@
             max-height: 15rem;
         }
 
-        &__item {
+        &-item {
             padding: 5px 4px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+            @include utils.text-truncate($lines: 2);
             overflow-wrap: anywhere;
-            text-overflow: ellipsis;
-            overflow: hidden;
             line-height: 1.3;
             transition: background-color 0.2s ease;
 

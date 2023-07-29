@@ -27,17 +27,17 @@ const RecipeBasicInfo = ({ recipe }: RecipeInfoSectionProps) => {
                     unoptimized // display image optimization. May cause image to be blurry when fetched from CDN
                     width={1}
                     height={1}
-                    className={styles["recipe_basic-info__photo"]} // can override width and height attributes
+                    className={styles["recipe-basic-info__photo"]} // can override width and height attributes
                 />
                 <Text className={ubuntu.className}>
                     <strong>Description:</strong> {recipe.description || "N/A"}
                 </Text>
             </div>
-            <div className={styles["recipe_basic-info__ingredients"]}>
-                <Text className={styles["recipe_basic-info__ingredients__heading"]}>
+            <div className={styles["recipe-basic-info__ingredients"]}>
+                <Text className={styles["recipe-basic-info__ingredients-heading"]}>
                     Ingredients
                 </Text>
-                <List className={styles["recipe_basic-info__ingredients__list"]}>
+                <List className={styles["recipe-basic-info__ingredients-list"]}>
                     {ingredients?.map((elem) => (
                         <List.Item key={elem.id}>{elem.name}</List.Item>
                     ))}
