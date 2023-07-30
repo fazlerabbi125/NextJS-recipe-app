@@ -16,8 +16,9 @@ type RecipeListResponse = CustomAxiosResponse<RecipeListType>;
 
 const RecipeList = (props: RecipeListProps) => {
     const router = useRouter();
-    const itemsPerPage = 9;
     const page = React.useMemo<number>(() => Number(router.query?.page || 1), [router.query?.page]);
+    const parentRef = React.useRef<HTMLDivElement | null>(null);
+    const itemsPerPage = 9;
     const start = (page - 1) * itemsPerPage;
     const end = (page - 1) * itemsPerPage + itemsPerPage;
     const {
@@ -33,9 +34,17 @@ const RecipeList = (props: RecipeListProps) => {
 
     function handlePageChange(page: number) {
         const { page: _, ...rest } = router.query;
-        router.push({
-            pathname: router.pathname,
-            query: page > 1 ? { page, ...rest } : rest,
+        router.push(
+            {
+                pathname: router.pathname,
+                query: page > 1 ? { page, ...rest } : rest,
+            },
+            undefined,
+            { scroll: false }
+        );
+        parentRef.current?.scrollIntoView({
+            block: "start",
+            behavior: "smooth",
         });
     }
 
@@ -52,7 +61,7 @@ const RecipeList = (props: RecipeListProps) => {
     }
 
     return (
-        <div className="mt-12 mb-10">
+        <div className="pt-4 mb-10" ref={parentRef}>
             {recipeList && recipeList.results.length > 0 ? (
                 <React.Fragment>
                     <div className={styles["recipe-list__container"]}>
