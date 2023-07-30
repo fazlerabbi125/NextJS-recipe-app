@@ -4,7 +4,7 @@ import Header from "../components/organisms/Header";
 export default function Home() {
     return (
         <section>
-            <Header classNames={{ text: "text-center text-5xl mb-16" }}>
+            <Header classNames={{ content: "text-center text-5xl mb-16" }}>
                 Welcome to Faiyaz's Recipes
             </Header>
             <RecipeList />

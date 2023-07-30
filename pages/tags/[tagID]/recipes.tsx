@@ -15,7 +15,9 @@ const TagRecipes: NextPage<TagRecipesProps> = ({ tagInfo }) => {
 
     return (
         <>
-            <Header classNames={{ text: "text-3xl mb-2" }}>{tagInfo.display_name} recipes</Header>
+            <Header classNames={{ content: "text-3xl mb-2" }}>
+                {tagInfo.display_name} recipes
+            </Header>
             <Text size={20} weight={600} mb="md" className="text-yellow-100">
                 Type:{" "}
                 {tagInfo.type.charAt(0).toUpperCase() + tagInfo.type.slice(1, tagInfo.type.length)}
