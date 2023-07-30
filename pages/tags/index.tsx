@@ -52,7 +52,7 @@ export default function TagList() {
                         }
                         classNames={{ input: "focus:border-gray-400" }}
                     />
-                    <Header className="text-center text-4xl mt-10 mb-12">
+                    <Header classNames={{ text: "text-center text-4xl mt-10 mb-12" }}>
                         {tagList.results.length > 0 ? "Available Tags" : "No tags found"}
                     </Header>
                     {tagList.results.length > 0 && (

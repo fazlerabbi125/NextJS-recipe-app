@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import AppLayout from "../components/templates/AppLayout";
+import AppLayout from "@/components/templates/AppLayout";
 import RenderGate from "@/components/templates/RenderGate";
 import SEOTags from "@/seo-tags";
 import "@/styles/globals.scss";
