@@ -1,0 +1,24 @@
+@use "@/styles/partials/utils";
+@use "@/styles/partials/mediaQuery";
+
+.recipe-list-card {
+    position: relative;
+    flex-basis: 325px;
+
+    &__photo {
+        position: relative;
+        height: 200px;
+
+        > img {
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    &__footer {
+        position: sticky;
+        top: 100%;
+        @include utils.flex-container($jc: center);
+        margin-top: 1rem;
+    }
+}

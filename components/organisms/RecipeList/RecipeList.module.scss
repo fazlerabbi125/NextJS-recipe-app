@@ -5,25 +5,9 @@
         @include utils.flex-container($jc: center, $ai: center);
     }
 
-    &__card {
-        position: relative;
-        flex-basis: 325px;
-
-        &-photo {
-            position: relative;
-            height: 200px;
-
-            > img {
-                object-fit: cover;
-                object-position: center;
-            }
-        }
-
-        &-footer {
-            position: sticky;
-            top: 100%;
-            @include utils.flex-container($jc: center);
-            margin-top: 1rem;
-        }
+    &__container {
+        @include utils.flex-container($jc: center, $wr: wrap);
+        margin-bottom: 2.5rem;
+        @apply gap-20;
     }
 }

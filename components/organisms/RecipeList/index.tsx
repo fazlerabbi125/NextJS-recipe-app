@@ -1,12 +1,10 @@
 import React from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import Image from "next/image";
-import { Flex, Card, Loader, Text, Stack } from "@mantine/core";
+import { Loader, Text } from "@mantine/core";
 import ListPagination from "../../molecules/ListPagination";
-import CustomRating from "../../atoms/CustomRating";
 import { RecipeListType } from "@/pages/api/recipes";
 import { RecipeDetailsType } from "@/pages/api/recipes/[recipeSlug]";
+import RecipeListCard from "@/components/molecules/RecipeListCard";
 import { useAxios, CustomAxiosResponse } from "@/hooks/useAxios";
 import styles from "./RecipeList.module.scss";
 
@@ -57,43 +55,11 @@ const RecipeList = (props: RecipeListProps) => {
         <div className="mt-12 mb-10">
             {recipeList && recipeList.results.length > 0 ? (
                 <React.Fragment>
-                    <Flex className="gap-20" justify="center" direction="row" wrap="wrap">
+                    <div className={styles["recipe-list__container"]}>
                         {recipeList.results.map((recipe: RecipeDetailsType) => (
-                            <Card
-                                shadow="sm"
-                                p="sm"
-                                radius="md"
-                                className={styles["recipe-list__card"]}
-                                key={recipe.id}
-                            >
-                                <Card.Section className={styles["recipe-list__card-photo"]}>
-                                    <Image
-                                        src={recipe.thumbnail_url}
-                                        alt={recipe.thumbnail_alt_text}
-                                        fill
-                                    />
-                                </Card.Section>
-                                <Stack justify="flex-start" spacing={6}>
-                                    <Text weight={500}>{recipe.name}</Text>
-                                    <CustomRating value={recipe.user_ratings?.score} />
-                                    <Text size="sm" color="dimmed" className="truncate">
-                                        {recipe.description || "No description"}
-                                    </Text>
-                                </Stack>
-                                <div className={styles["recipe-list__card-footer"]}>
-                                    <Link
-                                        className="btn btn--danger w-8/12"
-                                        href={{
-                                            pathname: "/recipes/[recipeSlug]",
-                                            query: { recipeSlug: recipe.slug },
-                                        }}
-                                    >
-                                        View Details
-                                    </Link>
-                                </div>
-                            </Card>
+                            <RecipeListCard recipe={recipe} key={recipe.id} />
                         ))}
-                    </Flex>
+                    </div>
                     <ListPagination
                         page={page}
                         onPageChange={handlePageChange}
