@@ -1,1 +1,22 @@
-[]
+[
+    {
+        "id": 1,
+        "src": "/assets/images/carousel/Asian-Orange-Chicken-with-Green-Onions.png"
+    },
+    {
+        "id": 2,
+        "src": "/assets/images/carousel/beef-shepherds-pie-106408-1.jpeg"
+    },
+    {
+        "id": 3,
+        "src": "/assets/images/carousel/black-eyed-pea-dahl.jpg"
+    },
+    {
+        "id": 4,
+        "src": "/assets/images/carousel/pasta.webp"
+    },
+    {
+        "id": 5,
+        "src": "/assets/images/carousel/pizza.webp"
+    }
+]

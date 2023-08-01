@@ -4,7 +4,7 @@ import { Title } from "@mantine/core";
 interface HeaderProps {
     classNames?: {
         container?: string;
-        text?: string;
+        content?: string;
     };
     children: React.ReactNode;
 }
@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = (props) => {
                 .filter((elem) => elem)
                 .join(" ")}
         >
-            <Title className={props.classNames?.text}>{props.children}</Title>
+            <Title className={props.classNames?.content}>{props.children}</Title>
         </header>
     );
 };

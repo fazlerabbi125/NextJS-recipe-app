@@ -11,15 +11,11 @@ $breakpoints: (
         @media only screen and (min-width: map-get($breakpoints, "lg")) {
             @content;
         }
-    }
-
-    @if $breakpoint == tablet {
+    } @else if $breakpoint == tablet {
         @media only screen and (min-width: map-get($breakpoints, "md")) and (max-width: (map-get($breakpoints, "lg")-0.05)) {
             @content;
         }
-    }
-
-    @if $breakpoint == mobile {
+    } @else if $breakpoint == mobile {
         @media only screen and (max-width: map-get($breakpoints, "sm")) {
             @content;
         }
@@ -45,13 +41,19 @@ $breakpoints: (
 }
 
 @mixin screen-type($orientation) {
-    @if $orientation == portrait {
+    @if $orientation == portrait { // viewport width < height
         @media (orientation: portrait) {
             @content;
         }
-    } @else if $orientation == landscape {
+    } @else if $orientation == landscape { // viewport width >= height
         @media (orientation: landscape) {
             @content;
         }
+    }
+}
+
+@mixin pointingDevice($pointer) {
+    @media (pointer: $pointer) {
+        @content;
     }
 }

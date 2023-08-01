@@ -9,11 +9,8 @@
 @tailwind utilities;
 
 /* 
-BEM convention contains one element name after the block name and each block or elem may have one modifier name after it.
+BEM allows nesting upto two levels deep i.e block->elem->modfier
 Hyphens are used instead of spaces and can be used to extend block/element name only by one level. Example:
-
-BEM should only branch two levels deep from topmost classname.
-You can also follow the pattern: block-name__element-name format. Example:
 
 <form class="search-form">
     <div class="search-form__content">
@@ -22,15 +19,6 @@ You can also follow the pattern: block-name__element-name format. Example:
     </div>
 </form>
 
-BEM standard:
-1)hyphenated class names as blocks:-
-foo-bar
-2)block name followed by __ followed by hyphenated class names for elements:-
-foo-bar__fizz-buzz
-3)block or element names followed by -- followed by hyphenated class names for modifiers:-
-foo-bar--baz, foo-bar--baz__fizz-buzz, foo-bar__fizz-buzz--qux
-
-https://en.bem.info/methodology/quick-start/#guidelines-for-using-elements
 https://www.toptal.com/css/introduction-to-bem-methodology
 */
 
@@ -68,11 +56,6 @@ button {
 input,
 span {
     color: inherit;
-}
-
-#__next {
-    min-height: 100vh;
-    position: relative;
 }
 
 ul {
