@@ -32,7 +32,7 @@ function RecipeInstructions({ recipe }: RecipeInfoSectionProps) {
         ],
     };
 
-    const handlePlayerReady = (player: VideoJsPlayer) => {
+    const handlePlayerReady = React.useCallback((player: VideoJsPlayer) => {
         playerRef.current = player;
 
         // You can handle player events here, for example:
@@ -55,7 +55,7 @@ function RecipeInstructions({ recipe }: RecipeInfoSectionProps) {
         player.on("dispose", () => {
             videojs.log("player will dispose");
         });
-    };
+    }, []);
 
     return (
         <React.Fragment>

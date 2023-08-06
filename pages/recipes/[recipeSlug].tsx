@@ -9,6 +9,7 @@ import CustomRating from "@/components/atoms/CustomRating";
 import RecipeBasicInfo from "@/components/organisms/RecipeBasicInfo";
 import RecipeInstructions from "@/components/organisms/RecipeInstructions";
 import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from "react-share";
+import { buildClassNames } from "@/utils/buildClassNames";
 import styles from "./RecipeDetails.module.scss";
 
 export async function getServerSideProps(
@@ -37,23 +38,23 @@ export default function RecipeDetails({
 
     return (
         <React.Fragment>
-            <Card p="md" mb={"5em"} className={styles.recipe_details__card}>
+            <Card p="md" mb={"5em"} className={styles["recipe-details__card"]}>
                 <Stack justify="flex-start" spacing={6} mb="sm">
-                    <Title className={styles.recipe_details__card__header}>{recipe.name}</Title>
+                    <Title className={styles["recipe-details__card-header"]}>{recipe.name}</Title>
                     <CustomRating value={recipe.user_ratings?.score} />
                     <Flex justify={"space-between"} align={"center"} gap={10} wrap={"wrap"}>
                         <Text size="md" color="dimmed">
                             <strong>Published:</strong>{" "}
                             {new Date(recipe.created_at).toLocaleDateString()}
                         </Text>
-                        <div className={styles.recipe_details__card__share}>
+                        <div className={styles["recipe-details__share"]}>
                             <FacebookShareButton
                                 url={(process.env.NEXT_PUBLIC_HOST || "") + router.asPath}
                                 resetButtonStyle={false}
-                                className={[
-                                    styles.recipe_details__card__share__btn,
-                                    styles["recipe_details__card__share__btn--fb"],
-                                ].join(" ")}
+                                className={buildClassNames(
+                                    styles["recipe-details__share-btn"],
+                                    styles["recipe-details__share-btn--fb"]
+                                )}
                             >
                                 <FacebookIcon size={35} />
                                 <span>Share</span>
@@ -61,10 +62,10 @@ export default function RecipeDetails({
                             <TwitterShareButton
                                 url={(process.env.NEXT_PUBLIC_HOST || "") + router.asPath}
                                 resetButtonStyle={false}
-                                className={[
-                                    styles.recipe_details__card__share__btn,
-                                    styles["recipe_details__card__share__btn--twitter"],
-                                ].join(" ")}
+                                className={buildClassNames(
+                                    styles["recipe-details__share-btn"],
+                                    styles["recipe-details__share-btn--twitter"]
+                                )}
                             >
                                 <TwitterIcon size={35} />
                                 <span>Tweet</span>
@@ -76,20 +77,20 @@ export default function RecipeDetails({
                     px="md"
                     pt={3}
                     pb="md"
-                    className={`${styles.recipe_details__card__tags} mb-8`}
+                    className={`${styles["recipe-details__tags"]} mb-8`}
                 >
                     {recipe.tags.length > 0 ? (
                         <>
                             <Text size={21} weight={600}>
                                 Tags:
                             </Text>
-                            <div className={styles.recipe_details__card__tags__container}>
+                            <div className={styles["recipe-details__tags-list"]}>
                                 {recipe.tags.map((tag) => (
                                     <NavButton
                                         color="dark"
                                         radius="xl"
                                         key={tag.id}
-                                        className={styles.recipe_details__card__tags__item}
+                                        className={styles["recipe-details__tags-item"]}
                                         url={`/tags/${tag.id}/recipes`}
                                     >
                                         {tag.display_name} ({tag.type.split("_").join(" ")})

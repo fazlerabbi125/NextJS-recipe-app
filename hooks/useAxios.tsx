@@ -1,13 +1,6 @@
-import axios, { AxiosResponse, AxiosError } from "axios";
+import { AxiosResponse, AxiosError } from "axios";
+import AxiosServices from "@/utils/axiosServices";
 import useSWR from "swr";
-
-const axInstance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000/api",
-    headers: {
-        "X-RapidAPI-Key": "d052de18ccmsh987128f91545609p1a60c6jsn4deaea0deebd",
-        "X-RapidAPI-Host": "tasty.p.rapidapi.com",
-    },
-});
 
 export interface CustomAxiosResponse<T = any> {
     isLoading: boolean;
@@ -16,7 +9,7 @@ export interface CustomAxiosResponse<T = any> {
 }
 
 const fetchData = async <T = any,>(url: string, params: Record<string, number | string> = {}) => {
-    const res: AxiosResponse<T> = await axInstance.get(url, { params });
+    const res: AxiosResponse<T> = await AxiosServices.get(url, params);
     return res.data;
 };
 
@@ -28,4 +21,4 @@ const useAxios = (url: string, params: Record<string, number | string> = {}) => 
     return { data, error, isLoading };
 };
 
-export { axInstance, useAxios, fetchData };
+export { useAxios, fetchData };
