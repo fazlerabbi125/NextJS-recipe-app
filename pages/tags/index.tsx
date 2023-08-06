@@ -39,7 +39,7 @@ export default function TagList() {
                 </div>
             )}
             {error && <div className="response-error">{error.message}</div>}
-            {!error && tagList && (
+            {!error && !isLoading && tagList && (
                 <>
                     <TextInput
                         placeholder="Search tag by name or type"

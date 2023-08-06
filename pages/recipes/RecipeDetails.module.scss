@@ -1,23 +1,26 @@
 @use "@/styles/partials/utils";
 
-.recipe_details__card {
-    width: 85%;
-    color: #333;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
+.recipe-details {
+    &__card {
+        width: 85%;
+        color: #333;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
 
-    &__header {
-        color: lighten(#b91c1c, 7%);
-        @apply text-4xl font-semibold;
+        &-header {
+            color: lighten(#b91c1c, 7%);
+            @apply text-4xl font-semibold;
+        }
     }
 
     &__share {
         @include utils.flex-container();
         gap: 5px;
 
-        &__btn {
+        &-btn {
             all: unset;
+            box-sizing: border-box;
             display: inline-block;
             color: #fff;
             font-size: 1rem;
@@ -44,13 +47,13 @@
         border-style: solid;
         @apply border-gray-300 border-x-0 border-y;
 
-        &__container {
+        &-list {
             margin-top: 1rem;
             @include utils.flex-container($ai: center, $wr: wrap);
             gap: 0.5rem;
         }
 
-        &__item {
+        &-item {
             flex-basis: auto;
         }
     }

@@ -6,6 +6,7 @@ import { withRouter, NextRouter } from "next/router";
 import { RecipeAutoCompleteTypeItem } from "@/pages/api/recipes/search";
 import { TbSearch } from "react-icons/tb";
 import { RxCross2 } from "react-icons/rx";
+import { buildClassNames } from "@/utils/buildClassNames";
 import styles from "./RecipeAutoComplete.module.scss";
 
 const RecipeAutoComplete: FC<{ router: NextRouter }> = ({ router }) => {
@@ -94,12 +95,14 @@ const RecipeAutoComplete: FC<{ router: NextRouter }> = ({ router }) => {
                 )}
             </div>
             <div
-                className={[
+                className={buildClassNames(
                     styles["recipe-autocomplete__dropdown"],
-                    search && !loading && open && suggestions
-                        ? styles["recipe-autocomplete__dropdown--show"]
-                        : "",
-                ].join(" ")}
+                    search &&
+                        !loading &&
+                        open &&
+                        suggestions &&
+                        styles["recipe-autocomplete__dropdown--show"]
+                )}
             >
                 {suggestions?.length === 0 ? (
                     <div className="text-center">No recipes found</div>

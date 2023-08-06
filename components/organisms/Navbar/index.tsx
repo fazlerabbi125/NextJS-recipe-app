@@ -3,6 +3,7 @@ import CustomNavLink from "../../atoms/CustomNavLink";
 import Image from "next/image";
 import { Burger } from "@mantine/core";
 import RecipeAutoComplete from "../../molecules/RecipeAutoComplete";
+import { buildClassNames } from "@/utils/buildClassNames";
 import styles from "./Navbar.module.scss";
 
 const routes = [
@@ -27,9 +28,10 @@ export default function Navbar() {
                     className={styles.navbar__toggler}
                 />
                 <div
-                    className={`${styles.navbar__collapse} ${
-                        isOpen ? styles["navbar__collapse--show"] : ""
-                    }`}
+                    className={buildClassNames(
+                        styles.navbar__collapse,
+                        isOpen && styles["navbar__collapse--show"]
+                    )}
                 >
                     <ul className={styles["navbar__nav-list"]}>
                         {routes.map((route) => (
