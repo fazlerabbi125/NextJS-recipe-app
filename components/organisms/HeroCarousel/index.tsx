@@ -19,7 +19,8 @@ export default function HeroCarousel(props: HeroCarouselProps) {
         pauseOnHover: false,
         slidesToScroll: 1,
         slidesToShow: 1,
-        centerPadding: "150px", // pad centre slide and change the width it consumes
+        swipeToSlide: true, // Enable drag/swipe irrespective of `slidesToScroll`
+        centerPadding: "150px", // pad center slide and change the width it consumes
         className: styles["hero-carousel"],
         dotsClass: ["slick-dots", styles["hero-carousel__dots"]].join(" "),
         responsive: [
