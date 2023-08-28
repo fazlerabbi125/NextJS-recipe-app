@@ -5,14 +5,12 @@ import ListPagination from "../../molecules/ListPagination";
 import { RecipeListType } from "@/pages/api/recipes";
 import { RecipeDetailsType } from "@/pages/api/recipes/[recipeSlug]";
 import RecipeListCard from "@/components/molecules/RecipeListCard";
-import { useAxios, CustomAxiosResponse } from "@/hooks/useAxios";
+import { useAxios } from "@/hooks/useAxios";
 import styles from "./RecipeList.module.scss";
 
 interface RecipeListProps {
     tags?: number;
 }
-
-type RecipeListResponse = CustomAxiosResponse<RecipeListType>;
 
 const RecipeList = (props: RecipeListProps) => {
     const router = useRouter();
@@ -25,7 +23,7 @@ const RecipeList = (props: RecipeListProps) => {
         data: recipeList,
         error,
         isLoading,
-    }: RecipeListResponse = useAxios("/recipes", {
+    } = useAxios<RecipeListType>("/recipes", {
         start,
         end,
         tags: props.tags || "",

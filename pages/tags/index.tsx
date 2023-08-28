@@ -1,14 +1,12 @@
 import React from "react";
 import { TextInput, Loader } from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
-import { useAxios, CustomAxiosResponse } from "@/hooks/useAxios";
+import { useAxios } from "@/hooks/useAxios";
 import { TagListType } from "../api/tags";
 import NavButton from "@/components/atoms/NavButton";
 import ListPagination from "@/components/molecules/ListPagination";
 import Header from "@/components/organisms/Header";
 import styles from "./Tags.module.scss";
-
-type TagListResponse = CustomAxiosResponse<TagListType>;
 
 export default function TagList() {
     const itemsPerPage = 40;
@@ -23,7 +21,7 @@ export default function TagList() {
         data: tagList,
         error,
         isLoading,
-    }: TagListResponse = useAxios("/tags", {
+    } = useAxios<TagListType>("/tags", {
         start,
         end,
         tagName: debouncedTagName,

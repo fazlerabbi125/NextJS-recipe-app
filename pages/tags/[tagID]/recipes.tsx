@@ -1,5 +1,4 @@
 import RecipeList from "@/components/organisms/RecipeList";
-import { useRouter } from "next/router";
 import Header from "@/components/organisms/Header";
 import { Text } from "@mantine/core";
 import { GetServerSidePropsContext, NextPage } from "next";
@@ -11,8 +10,6 @@ interface TagRecipesProps {
 }
 
 const TagRecipes: NextPage<TagRecipesProps> = ({ tagInfo }) => {
-    const router = useRouter();
-
     return (
         <>
             <Header classNames={{ content: "text-3xl mb-2" }}>
@@ -22,12 +19,12 @@ const TagRecipes: NextPage<TagRecipesProps> = ({ tagInfo }) => {
                 Type:{" "}
                 {tagInfo.type.charAt(0).toUpperCase() + tagInfo.type.slice(1, tagInfo.type.length)}
             </Text>
-            <RecipeList tags={parseInt(router.query?.tagID as string)} />
+            <RecipeList tags={tagInfo.id} />
         </>
     );
 };
 
-export async function getServerSideProps(context: GetServerSidePropsContext<{ tagID?: string }>) {
+export async function getServerSideProps(context: GetServerSidePropsContext<{ tagID: string }>) {
     const tagInfo: TagDetailType = await fetchData(`/tags/${context.params?.tagID}`);
 
     if (!tagInfo) {
